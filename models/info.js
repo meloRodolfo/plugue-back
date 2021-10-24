@@ -1,12 +1,16 @@
 'use strict';
-import { Model } from 'sequelize';
+const {
+  Model
+} = require('sequelize');
 
-import { user } from './user';
+const { user } = require('./user');
 
-export default (sequelize, DataTypes) => {
-  class info extends Model {};
-
-  const User = info.belongsTo(user)
+module.exports = (sequelize, DataTypes) => {
+  class info extends Model {
+    static associate(models) {
+      this.belongsTo(models.user, { through: interest });
+    }
+  };
 
   info.init({
     userId: DataTypes.STRING,
