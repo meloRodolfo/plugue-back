@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "admin",
+    "password": "jlW0on0YEo5FkaMu0BTq",
+    "database": "plugue",
+    "host": "pluguedb.cfaqgkfb9iki.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  }
+}
