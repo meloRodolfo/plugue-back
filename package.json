@@ -5,9 +5,9 @@
   "main": "handler.js",
   "dependencies": {
     "mysql2": "^2.3.2",
-    "sequelize": "^6.7.0"
+    "sequelize": "^6.7.0",
+    "uuidv4": "^6.2.12"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/meloRodolfo/plugue-back/issues"
   },
-  "homepage": "https://github.com/meloRodolfo/plugue-back#readme"
+  "homepage": "https://github.com/meloRodolfo/plugue-back#readme",
+  "devDependencies": {
+    "serverless-bundle": "^5.0.2"
+  }
 }

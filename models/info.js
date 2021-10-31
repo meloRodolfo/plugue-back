@@ -8,7 +8,7 @@ const { user } = require('./user');
 module.exports = (sequelize, DataTypes) => {
   class info extends Model {
     static associate(models) {
-      this.belongsTo(models.user, { through: interest });
+      this.belongsTo(models.user, { through: 'interest' });
     }
   };
 
@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'info',
-    include: [ User ]
   });
   return info;
 };

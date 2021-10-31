@@ -16,12 +16,12 @@ provider:
 
 
 functions:
-  hello:
-    handler: handler.hello
+  CreateIdea:
+    handler: src/functions/idea/create/handler.main
     events:
       - httpApi:
-          path: /users/create
-          method: get
+          path: idea
+          method: post
 
 #    Define function environment variables here
 #    environment:

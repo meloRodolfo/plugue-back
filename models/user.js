@@ -1,10 +1,10 @@
 'use strict';
-import { Model } from 'sequelize';
+const { Model } = require('sequelize');
 
-export default (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     static associate(models) {
-      this.belongsToMany(models.idea, { through: interest });
+      this.belongsToMany(models.idea, { through: 'interest' });
     }
   };
   user.init({

@@ -1,0 +1,9 @@
+{
+  "body": {
+    "title": "Teste",
+    "status": "in progress",
+    "description": "Descrição do teste",
+    "area_of_interest": "teste",
+    "author": 1
+  }
+}
