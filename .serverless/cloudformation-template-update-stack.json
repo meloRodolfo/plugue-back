@@ -71,10 +71,10 @@
         }
       }
     },
-    "HelloLogGroup": {
+    "CreateIdeaLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/plugue-back-dev-hello"
+        "LogGroupName": "/aws/lambda/plugue-back-dev-CreateIdea"
       }
     },
     "IamRoleLambdaExecution": {
@@ -154,18 +154,18 @@
         }
       }
     },
-    "HelloLambdaFunction": {
+    "CreateIdeaLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/plugue-back/dev/1633485090839-2021-10-06T01:51:30.839Z/plugue-back.zip"
+          "S3Key": "serverless/plugue-back/dev/1635812759768-2021-11-02T00:25:59.768Z/plugue-back.zip"
         },
-        "Handler": "handler.hello",
+        "Handler": "src/functions/idea/create/handler.main",
         "Runtime": "nodejs12.x",
-        "FunctionName": "plugue-back-dev-hello",
+        "FunctionName": "plugue-back-dev-CreateIdea",
         "MemorySize": 1024,
         "Timeout": 6,
         "Role": {
@@ -176,17 +176,17 @@
         }
       },
       "DependsOn": [
-        "HelloLogGroup"
+        "CreateIdeaLogGroup"
       ]
     },
-    "HelloLambdaVersion44yf5ffBS7MNGjK5LPKUFakBVVXo1S13p5dNNtvQg": {
+    "CreateIdeaLambdaVersion6uqqETYTWnVERcy7Ssx40YsLIB7adlBeEGosqB7mk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "HelloLambdaFunction"
+          "Ref": "CreateIdeaLambdaFunction"
         },
-        "CodeSha256": "I5lx9rW4OGWkMuaCd5khR70iPK8UbCZ3eYacPX6CiJ8="
+        "CodeSha256": "sb5E4HH6+2BPPuZiy4dutp4IAw7SDHLty/1QU8Kir5Q="
       }
     },
     "HttpApi": {
@@ -209,12 +209,12 @@
         }
       }
     },
-    "HelloLambdaPermissionHttpApi": {
+    "CreateIdeaLambdaPermissionHttpApi": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
           "Fn::GetAtt": [
-            "HelloLambdaFunction",
+            "CreateIdeaLambdaFunction",
             "Arn"
           ]
         },
@@ -246,7 +246,7 @@
         }
       }
     },
-    "HttpApiIntegrationHello": {
+    "HttpApiIntegrationCreateIdea": {
       "Type": "AWS::ApiGatewayV2::Integration",
       "Properties": {
         "ApiId": {
@@ -255,7 +255,7 @@
         "IntegrationType": "AWS_PROXY",
         "IntegrationUri": {
           "Fn::GetAtt": [
-            "HelloLambdaFunction",
+            "CreateIdeaLambdaFunction",
             "Arn"
           ]
         },
@@ -263,26 +263,26 @@
         "TimeoutInMillis": 6500
       }
     },
-    "HttpApiRouteGetUsersCreate": {
+    "HttpApiRoutePostIdea": {
       "Type": "AWS::ApiGatewayV2::Route",
       "Properties": {
         "ApiId": {
           "Ref": "HttpApi"
         },
-        "RouteKey": "GET /users/create",
+        "RouteKey": "POST /idea",
         "Target": {
           "Fn::Join": [
             "/",
             [
               "integrations",
               {
-                "Ref": "HttpApiIntegrationHello"
+                "Ref": "HttpApiIntegrationCreateIdea"
               }
             ]
           ]
         }
       },
-      "DependsOn": "HttpApiIntegrationHello"
+      "DependsOn": "HttpApiIntegrationCreateIdea"
     }
   },
   "Outputs": {
@@ -294,13 +294,13 @@
         "Name": "sls-plugue-back-dev-ServerlessDeploymentBucketName"
       }
     },
-    "HelloLambdaFunctionQualifiedArn": {
+    "CreateIdeaLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersion44yf5ffBS7MNGjK5LPKUFakBVVXo1S13p5dNNtvQg"
+        "Ref": "CreateIdeaLambdaVersion6uqqETYTWnVERcy7Ssx40YsLIB7adlBeEGosqB7mk"
       },
       "Export": {
-        "Name": "sls-plugue-back-dev-HelloLambdaFunctionQualifiedArn"
+        "Name": "sls-plugue-back-dev-CreateIdeaLambdaFunctionQualifiedArn"
       }
     },
     "HttpApiId": {

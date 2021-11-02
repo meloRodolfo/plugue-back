@@ -85,10 +85,10 @@
               }
             }
           },
-          "HelloLogGroup": {
+          "CreateIdeaLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/plugue-back-dev-hello"
+              "LogGroupName": "/aws/lambda/plugue-back-dev-CreateIdea"
             }
           },
           "IamRoleLambdaExecution": {
@@ -168,18 +168,18 @@
               }
             }
           },
-          "HelloLambdaFunction": {
+          "CreateIdeaLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/plugue-back/dev/1633485090839-2021-10-06T01:51:30.839Z/plugue-back.zip"
+                "S3Key": "serverless/plugue-back/dev/1635812759768-2021-11-02T00:25:59.768Z/plugue-back.zip"
               },
-              "Handler": "handler.hello",
+              "Handler": "src/functions/idea/create/handler.main",
               "Runtime": "nodejs12.x",
-              "FunctionName": "plugue-back-dev-hello",
+              "FunctionName": "plugue-back-dev-CreateIdea",
               "MemorySize": 1024,
               "Timeout": 6,
               "Role": {
@@ -190,17 +190,17 @@
               }
             },
             "DependsOn": [
-              "HelloLogGroup"
+              "CreateIdeaLogGroup"
             ]
           },
-          "HelloLambdaVersion44yf5ffBS7MNGjK5LPKUFakBVVXo1S13p5dNNtvQg": {
+          "CreateIdeaLambdaVersion6uqqETYTWnVERcy7Ssx40YsLIB7adlBeEGosqB7mk": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "HelloLambdaFunction"
+                "Ref": "CreateIdeaLambdaFunction"
               },
-              "CodeSha256": "I5lx9rW4OGWkMuaCd5khR70iPK8UbCZ3eYacPX6CiJ8="
+              "CodeSha256": "sb5E4HH6+2BPPuZiy4dutp4IAw7SDHLty/1QU8Kir5Q="
             }
           },
           "HttpApi": {
@@ -223,12 +223,12 @@
               }
             }
           },
-          "HelloLambdaPermissionHttpApi": {
+          "CreateIdeaLambdaPermissionHttpApi": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "HelloLambdaFunction",
+                  "CreateIdeaLambdaFunction",
                   "Arn"
                 ]
               },
@@ -260,7 +260,7 @@
               }
             }
           },
-          "HttpApiIntegrationHello": {
+          "HttpApiIntegrationCreateIdea": {
             "Type": "AWS::ApiGatewayV2::Integration",
             "Properties": {
               "ApiId": {
@@ -268,32 +268,32 @@
               },
               "IntegrationType": "AWS_PROXY",
               "IntegrationUri": {
-                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"HelloLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
+                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"CreateIdeaLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
               },
               "PayloadFormatVersion": "2.0",
               "TimeoutInMillis": 6500
             }
           },
-          "HttpApiRouteGetUsersCreate": {
+          "HttpApiRoutePostIdea": {
             "Type": "AWS::ApiGatewayV2::Route",
             "Properties": {
               "ApiId": {
                 "Ref": "HttpApi"
               },
-              "RouteKey": "GET /users/create",
+              "RouteKey": "POST /idea",
               "Target": {
                 "Fn::Join": [
                   "/",
                   [
                     "integrations",
                     {
-                      "Ref": "HttpApiIntegrationHello"
+                      "Ref": "HttpApiIntegrationCreateIdea"
                     }
                   ]
                 ]
               }
             },
-            "DependsOn": "HttpApiIntegrationHello"
+            "DependsOn": "HttpApiIntegrationCreateIdea"
           }
         },
         "Outputs": {
@@ -305,13 +305,13 @@
               "Name": "sls-plugue-back-dev-ServerlessDeploymentBucketName"
             }
           },
-          "HelloLambdaFunctionQualifiedArn": {
+          "CreateIdeaLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersion44yf5ffBS7MNGjK5LPKUFakBVVXo1S13p5dNNtvQg"
+              "Ref": "CreateIdeaLambdaVersion6uqqETYTWnVERcy7Ssx40YsLIB7adlBeEGosqB7mk"
             },
             "Export": {
-              "Name": "sls-plugue-back-dev-HelloLambdaFunctionQualifiedArn"
+              "Name": "sls-plugue-back-dev-CreateIdeaLambdaFunctionQualifiedArn"
             }
           },
           "HttpApiId": {
@@ -436,25 +436,25 @@
     },
     "pluginsData": {},
     "functions": {
-      "hello": {
-        "handler": "handler.hello",
+      "CreateIdea": {
+        "handler": "src/functions/idea/create/handler.main",
         "events": [
           {
             "httpApi": {
-              "path": "/users/create",
-              "method": "get"
+              "path": "/idea",
+              "method": "post"
             },
-            "resolvedMethod": "GET",
-            "resolvedPath": "/users/create"
+            "resolvedMethod": "POST",
+            "resolvedPath": "/idea"
           }
         ],
-        "name": "plugue-back-dev-hello",
+        "name": "plugue-back-dev-CreateIdea",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersion44yf5ffBS7MNGjK5LPKUFakBVVXo1S13p5dNNtvQg"
+        "versionLogicalId": "CreateIdeaLambdaVersion6uqqETYTWnVERcy7Ssx40YsLIB7adlBeEGosqB7mk"
       }
     },
     "configValidationMode": "warn",
@@ -476,7 +476,7 @@
     "artifact": "C:\\Users\\Milen\\OneDrive\\Documentos\\GitHub\\plugue-back\\.serverless\\plugue-back.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/plugue-back/dev/1633485090839-2021-10-06T01:51:30.839Z",
+    "artifactDirectoryName": "serverless/plugue-back/dev/1635812759768-2021-11-02T00:25:59.768Z",
     "artifact": "plugue-back.zip"
   }
 }

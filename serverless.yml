@@ -20,7 +20,7 @@ functions:
     handler: src/functions/idea/create/handler.main
     events:
       - httpApi:
-          path: idea
+          path: /idea
           method: post
 
 #    Define function environment variables here

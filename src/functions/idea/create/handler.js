@@ -1,5 +1,5 @@
 const { idea } = require('../../../../models');
-const { uuid } = require('uuidv4');
+const { uuid } = require('../../../utils/uuid');
 
 module.exports.main = async (event) => {
   const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body
@@ -7,7 +7,6 @@ module.exports.main = async (event) => {
   let statusCode;
 
   try {
-
     eventBody.id = uuid();
     const newIdea = await idea.create(eventBody)
     
@@ -23,6 +22,6 @@ module.exports.main = async (event) => {
 
   return {
     statusCode,
-    body
+    body: JSON.stringify(body)
   }
 }
