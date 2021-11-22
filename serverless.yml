@@ -23,6 +23,13 @@ functions:
           path: idea
           method: post
 
+  UpdateIdea:
+    handler: src/functions/idea/update/handler.main
+    events:
+      - httpApi:
+          path: idea/{IdeaId}
+          method: put
+
 #    Define function environment variables here
 #    environment:
 #      variable2: value2
