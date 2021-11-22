@@ -34,8 +34,8 @@ functions:
       handler: src/functions/idea/get/handler.main
       events:
         - httpApi:
-            path: idea
-            method: get/{ideaId}
+            path: idea/{ideaId}
+            method: get
 
 #    Define function environment variables here
 #    environment:
