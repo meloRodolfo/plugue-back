@@ -29,6 +29,12 @@ functions:
       - httpApi:
           path: idea/{IdeaId}
           method: put
+  DeleteIdea:
+    handler: src/functions/idea/delete/handler.main
+    events:
+      - httpApi:
+          path: idea
+          method: delete/{ideaId}
 
 #    Define function environment variables here
 #    environment:
