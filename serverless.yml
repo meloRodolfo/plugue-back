@@ -27,8 +27,8 @@ functions:
     handler: src/functions/idea/delete/handler.main
     events:
       - httpApi:
-          path: idea
-          method: delete/{ideaId}
+          path: idea/{ideaId}
+          method: delete
 
   GetIdea:
       handler: src/functions/idea/get/handler.main
