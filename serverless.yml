@@ -22,7 +22,6 @@ functions:
       - httpApi:
           path: idea
           method: post
-
   UpdateIdea:
     handler: src/functions/idea/update/handler.main
     events:
