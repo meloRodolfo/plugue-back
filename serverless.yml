@@ -32,9 +32,20 @@ functions:
     handler: src/functions/idea/delete/handler.main
     events:
       - httpApi:
-          path: idea
-          method: delete/{ideaId}
-
+          path: /idea/{ideaId}
+          method: delete
+  GetIdea:
+      handler: src/functions/idea/get/handler.main
+      events:
+        - httpApi:
+            path: /idea/{ideaId}
+            method: get
+  ListIdeas:
+      handler: src/functions/idea/list/handler.main
+      events:
+        - httpApi:
+            path: /idea/
+            method: get
 #    Define function environment variables here
 #    environment:
 #      variable2: value2

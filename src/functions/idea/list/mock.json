@@ -1,0 +1,6 @@
+{
+    "queryStringParameters": {
+        "title": "Teste",
+        "area_of_interest": "teste"
+    }
+}
