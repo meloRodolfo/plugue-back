@@ -42,6 +42,13 @@ functions:
             path: /idea/{ideaId}
             method: get
 
+  ShowInterest:
+      handler: src/functions/idea/showInterest/handler.main
+      events:
+        - httpApi:
+            path: /user/{userId}/idea/{ideaId}/interest
+            method: post
+
 #    Define function environment variables here
 #    environment:
 #      variable2: value2
