@@ -49,6 +49,13 @@ functions:
             path: /user/{userId}/idea/{ideaId}/interest
             method: post
 
+  AddComment:
+      handler: src/functions/comment/create/handler.main
+      events:
+        - httpApi:
+            path: /user/{userId}/idea/{ideaId}/comment
+            method: post
+
 #    Define function environment variables here
 #    environment:
 #      variable2: value2
