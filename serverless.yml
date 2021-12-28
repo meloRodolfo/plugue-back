@@ -34,6 +34,12 @@ functions:
       - httpApi:
           path: /idea/{ideaId}
           method: delete
+  CreateUser:
+    handler: src/functions/user/create/handler.main
+    events:
+      - httpApi:
+          path: /user
+          method: post
 
 resources:
   Resources:

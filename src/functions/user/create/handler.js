@@ -1,0 +1,33 @@
+const { user } = require('../../../../models');
+const { info } = require('../../../../models');
+const { uuid } = require('uuidv4');
+
+module.exports.main = async (event) => {
+    const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body
+    const body = {};
+    let statusCode;
+
+    try {
+        eventBody.id = uuid();
+        const newUser = await user.create({id: eventBody.id, email: eventBody.email, type: eventBody.type});
+        const array = [];
+        Object.entries(eventBody.info).forEach(([key, value]) => {
+            array.push({id: uuid(), type: key, value: value, userId: eventBody.id});
+        });
+        await info.bulkCreate(array);
+
+        statusCode = 201;
+        body.message = "Success to create new user";
+        body.user = newUser.id;
+
+    } catch (error) {
+        console.log(error);
+        statusCode = 500;
+        body.error = 'Error to create new user'
+    }
+
+    return {
+        statusCode,
+        body
+    }
+}
