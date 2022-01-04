@@ -7,10 +7,8 @@ module.exports.main = async (event) => {
     const body = {};
     let statusCode;
     body.headers = {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept, Accept-Language, X-Authorization",
-        "Content-Type": "application/json"
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true
       };
 
     try {
