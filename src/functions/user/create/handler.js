@@ -6,6 +6,12 @@ module.exports.main = async (event) => {
     const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body
     const body = {};
     let statusCode;
+    body.headers = {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept, Accept-Language, X-Authorization",
+        "Content-Type": "application/json"
+      };
 
     try {
         eventBody.id = uuid();

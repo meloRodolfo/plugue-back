@@ -19,9 +19,10 @@ functions:
   CreateIdea:
     handler: src/functions/idea/create/handler.main
     events:
-      - httpApi:
+      - http:
           path: /idea
           method: post
+          cors: true
   UpdateIdea:
     handler: src/functions/idea/update/handler.main
     events:
@@ -37,9 +38,16 @@ functions:
   CreateUser:
     handler: src/functions/user/create/handler.main
     events:
-      - httpApi:
+      - http:
           path: /user
           method: post
+          cors: true
+  ConfigCORS:
+    handler: src/functions/cors/handler.main
+    events:
+      - httpApi:
+          path: /
+          method: options
 
 resources:
   Resources:
