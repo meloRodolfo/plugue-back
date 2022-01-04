@@ -58,6 +58,13 @@ functions:
           path: /
           method: options
 
+  GetIdea:
+      handler: src/functions/idea/get/handler.main
+      events:
+        - httpApi:
+            path: /idea/{ideaId}
+            method: get
+
 resources:
   Resources:
     CognitoUserPool:
