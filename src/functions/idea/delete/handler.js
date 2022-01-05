@@ -37,6 +37,6 @@ module.exports.main = async (event) => {
 
   return {
     statusCode,
-    body
+    body: JSON.stringify(body)
   }
 }

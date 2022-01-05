@@ -19,36 +19,66 @@ functions:
   CreateIdea:
     handler: src/functions/idea/create/handler.main
     events:
-      - httpApi:
+      - http:
           path: /idea
           method: post
+          cors: true
+
   UpdateIdea:
     handler: src/functions/idea/update/handler.main
     events:
-      - httpApi:
-          path: idea/{IdeaId}
+      - http:
+          path: /idea/{IdeaId}
           method: put
+          cors: true
+
   DeleteIdea:
     handler: src/functions/idea/delete/handler.main
     events:
-      - httpApi:
+      - http:
           path: /idea/{ideaId}
           method: delete
+          cors: true
 
   GetIdea:
-      handler: src/functions/idea/get/handler.main
-      events:
-        - httpApi:
-            path: /idea/{ideaId}
-            method: get
+    handler: src/functions/idea/get/handler.main
+    events:
+      - http:
+          path: /idea/{ideaId}
+          method: get
+          cors: true
+          
+  CreateUser:
+    handler: src/functions/user/create/handler.main
+    events:
+      - http:
+          path: /user
+          method: post
+          cors: true
 
-#    Define function environment variables here
-#    environment:
-#      variable2: value2
+resources:
+  Resources:
+    CognitoUserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        # Generate a name based on the stage
+        UserPoolName: plugue-user-pool
+        # Set email as an alias
+        UsernameAttributes:
+          - email
+        AutoVerifiedAttributes:
+          - email
+    CognitoUserPoolClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        # Generate an app client name based on the stage
+        ClientName: plugue-user-pool-client
+        UserPoolId:
+          Ref: CognitoUserPool
+        ExplicitAuthFlows:
+          - ADMIN_NO_SRP_AUTH
+        GenerateSecret: false
 
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
 #    NewResource:
 #      Type: AWS::S3::Bucket
 #      Properties:

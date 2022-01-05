@@ -1,0 +1,11 @@
+{
+    "body": {
+      "email": "emailTeste@email.com.br",
+      "type": "Aluno",
+      "info": {
+        "name": "Aluno01",
+        "area_of_interest": "Inteligência coletiva",
+        "course": "Ciência da computação"
+      }
+    }
+  }
