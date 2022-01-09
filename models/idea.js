@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     status: DataTypes.STRING,
     description: DataTypes.STRING,
-    area_of_interest: DataTypes.STRING
+    area_of_interest: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'idea',
