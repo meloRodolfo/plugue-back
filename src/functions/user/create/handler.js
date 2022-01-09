@@ -8,7 +8,6 @@ module.exports.main = async (event) => {
     let statusCode;
 
     try {
-        eventBody.id = uuid();
         const newUser = await user.create({id: eventBody.id, email: eventBody.email, type: eventBody.type});
         const array = [];
         Object.entries(eventBody.info).forEach(([key, value]) => {
@@ -28,6 +27,11 @@ module.exports.main = async (event) => {
 
     return {
         statusCode,
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Headers': 'X-Amz-Security-Token',
+          }
     }
 }

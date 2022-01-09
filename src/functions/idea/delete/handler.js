@@ -37,6 +37,11 @@ module.exports.main = async (event) => {
 
   return {
     statusCode,
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Headers': 'X-Amz-Security-Token',
+    }
   }
 }

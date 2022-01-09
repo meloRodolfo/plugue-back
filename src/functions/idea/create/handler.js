@@ -1,7 +1,8 @@
 const { idea } = require('../../../../models');
-const { uuid } = require('uuidv4');
+const { v4: uuid } = require('uuid');
 
 module.exports.main = async (event) => {
+  console.log(event)
   const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body
   const body = {};
   let statusCode;
