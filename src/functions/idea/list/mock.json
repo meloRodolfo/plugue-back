@@ -1,5 +1,12 @@
 {
+<<<<<<< HEAD
   "queryStringParameters": {
     "userId": "1"
   }
+=======
+    "queryStringParameters": {
+        "title": "Teste",
+        "area_of_interest": "teste"
+    }
+>>>>>>> efdfd24a9f3ae4d99145b80cedb806ede02e7de7
 }

@@ -1,9 +1,4 @@
-const { idea, user } = require('../../../../models');
-
-function NotFoundError(message) {
-  this.message = message;
-  this.name = "NotFoundError";
-}
+const { idea } = require('../../../../models');
 
 module.exports.main = async (event) => {
   const { userId } = event.queryStringParameters;
