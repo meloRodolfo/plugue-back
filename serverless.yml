@@ -47,6 +47,14 @@ functions:
           path: /idea/{ideaId}
           method: get
           cors: true
+
+  ListIdeas:
+    handler: src/functions/idea/list/handler.main
+    events:
+      - http:
+          path: /idea
+          method: get
+          cors: true
           
   CreateUser:
     handler: src/functions/user/create/handler.main
@@ -78,6 +86,10 @@ resources:
         ExplicitAuthFlows:
           - ADMIN_NO_SRP_AUTH
         GenerateSecret: false
+        
+#    Define function environment variables here
+#    environment:
+#      variable2: value2
 
 #    NewResource:
 #      Type: AWS::S3::Bucket
