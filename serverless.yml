@@ -86,13 +86,6 @@ resources:
         ExplicitAuthFlows:
           - ADMIN_NO_SRP_AUTH
         GenerateSecret: false
-<<<<<<< HEAD
-        
-#    Define function environment variables here
-#    environment:
-#      variable2: value2
-=======
->>>>>>> listar-ideas
 
 #    NewResource:
 #      Type: AWS::S3::Bucket
