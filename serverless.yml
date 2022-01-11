@@ -35,7 +35,6 @@ functions:
   DeleteIdea:
     handler: src/functions/idea/delete/handler.main
     events:
-<<<<<<< HEAD
       - http:
           path: /idea/{ideaId}
           method: delete
@@ -87,26 +86,6 @@ resources:
         ExplicitAuthFlows:
           - ADMIN_NO_SRP_AUTH
         GenerateSecret: false
-=======
-      - httpApi:
-          path: /idea/{ideaId}
-          method: delete
-  GetIdea:
-      handler: src/functions/idea/get/handler.main
-      events:
-        - httpApi:
-            path: /idea/{ideaId}
-            method: get
-  ListIdeas:
-      handler: src/functions/idea/list/handler.main
-      events:
-        - httpApi:
-            path: /idea/
-            method: get
-#    Define function environment variables here
-#    environment:
-#      variable2: value2
->>>>>>> efdfd24a9f3ae4d99145b80cedb806ede02e7de7
 
 #    NewResource:
 #      Type: AWS::S3::Bucket

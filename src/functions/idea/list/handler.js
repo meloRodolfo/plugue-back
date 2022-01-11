@@ -1,13 +1,22 @@
-const { idea } = require('../../../../models');
+const { idea, user } = require('../../../../models');
 
 module.exports.main = async (event) => {
-  const { userId } = event.queryStringParameters;
+  const { userId, title, area_of_interest } = event.queryStringParameters;
   const body = {};
   let statusCode;
 
+  const whereParams = {}
+
+  if (title) whereParams.title = title;
+  if (area_of_interest) whereParams.area_of_interest = area_of_interest;
+
   try {
     const ideas = await idea.findAll({
-        attributes: ['id', 'title', 'status', 'description', 'area_of_interest', 'author']
+        attributes: ['id', 'title', 'status', 'description', 'area_of_interest', 'author'],
+        include: [{
+          model: user
+        }],
+        where: whereParams
     });
 
     const myIdeas = [];
