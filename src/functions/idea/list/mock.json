@@ -1,6 +1,6 @@
 {
-    "queryStringParameters": {
-        "title": "Teste",
-        "area_of_interest": "teste"
-    }
+  "queryStringParameters": {
+    "userId": "1",
+    "title": "teste 1"
+  }
 }
