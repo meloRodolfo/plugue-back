@@ -86,6 +86,14 @@ functions:
             path: /user/{userId}/idea/{ideaId}/comment
             method: post
 
+  GetInterestingIdeas:
+    handler: src/functions/interest/get/handler.main
+    events:
+      - http:
+          path: /user/{userId}/interest/ideas
+          method: get
+          cors: true
+
 resources:
   Resources:
     CognitoUserPool:
