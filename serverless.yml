@@ -71,6 +71,13 @@ functions:
             path: /user/{userId}/idea/{ideaId}/interest
             method: post
 
+  AddComment:
+      handler: src/functions/comment/create/handler.main
+      events:
+        - httpApi:
+            path: /user/{userId}/idea/{ideaId}/comment
+            method: post
+
 resources:
   Resources:
     CognitoUserPool:
