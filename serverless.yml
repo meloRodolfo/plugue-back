@@ -75,7 +75,7 @@ functions:
   AddComment:
       handler: src/functions/comment/create/handler.main
       events:
-        - httpApi:
+        - http:
             path: /user/{userId}/idea/{ideaId}/comment
             method: post
 
