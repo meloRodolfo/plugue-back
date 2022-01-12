@@ -70,21 +70,6 @@ functions:
           path: /user
           method: post
           cors: true
-  
-  ShowInterest:
-      handler: src/functions/idea/showInterest/handler.main
-      events:
-        - http:
-            path: /user/{userId}/idea/{ideaId}/interest
-            method: post
-            cors: true
-
-  AddComment:
-      handler: src/functions/comment/create/handler.main
-      events:
-        - http:
-            path: /user/{userId}/idea/{ideaId}/comment
-            method: post
 
   ShowInterest:
       handler: src/functions/idea/showInterest/handler.main
