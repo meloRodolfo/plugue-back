@@ -1,7 +1,7 @@
 const { idea, info, user } = require('../../../../models');
 
 module.exports.main = async (event) => {
-  const { userId, title, area_of_interest } = event.queryStringParameters;
+  const { userId, title, area_of_interest, author } = event.queryStringParameters;
   const body = {};
   let statusCode;
 
@@ -9,6 +9,7 @@ module.exports.main = async (event) => {
 
   if (title) whereParams.title = title;
   if (area_of_interest) whereParams.area_of_interest = area_of_interest;
+  if (author) whereParams.author = author;
 
   try {
     const ideas = await idea.findAll({
