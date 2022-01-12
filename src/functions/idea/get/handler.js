@@ -1,4 +1,4 @@
-const { idea } = require('../../../../models');
+const { idea, user } = require('../../../../models');
 
 function NotFoundError(message) {
   this.message = message;
@@ -11,7 +11,10 @@ module.exports.main = async (event) => {
   let statusCode;
 
   try {
-    const getIdea = await idea.findByPk(ideaId);
+    const getIdea = await idea.findByPk(ideaId, {
+      attributes: ['id', 'title', 'status', 'description', 'area_of_interest', 'AuthorId'],
+        include: user,
+    });
 
     if(!getIdea) throw new NotFoundError("Idea not found")
 
