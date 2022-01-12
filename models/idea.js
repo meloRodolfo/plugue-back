@@ -1,20 +1,29 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class idea extends Model {
-    static associate(models) {
-      this.belongsTo(models.user, { foreignKey: 'id', as: 'author' });
-      this.belongsToMany(models.user, { through: 'interest' });
-    }
-  };
-  idea.init({
-    title: DataTypes.STRING,
-    status: DataTypes.STRING,
-    description: DataTypes.STRING,
-    area_of_interest: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'idea',
+
+  const idea = sequelize.define('idea', {
+    title: {
+      type: DataTypes.STRING,
+    },
+    status: {
+      type: DataTypes.STRING,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
+    area_of_interest: {
+      type: DataTypes.STRING,
+    },
+    AuthorId: {
+      type: DataTypes.STRING,
+    },
   });
+
+  idea.associate = function associateModels(models) {
+    idea.belongsTo(models.user, { as: 'Author' });
+    idea.belongsToMany(models.user, { through: 'interest' });
+  }
+
   return idea;
 };

@@ -1,4 +1,4 @@
-const { idea } = require('../../../../models');
+const { idea, user } = require('../../../../models');
 const { v4: uuid } = require('uuid');
 
 module.exports.main = async (event) => {
@@ -10,7 +10,7 @@ module.exports.main = async (event) => {
   try {
 
     eventBody.id = uuid();
-    const newIdea = await idea.create(eventBody)
+    const newIdea = await idea.create(eventBody);
     
     statusCode = 201;
     body.message = "Success to create new idea";
