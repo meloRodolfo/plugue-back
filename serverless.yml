@@ -63,6 +63,13 @@ functions:
           path: /user
           method: post
           cors: true
+  
+  ShowInterest:
+      handler: src/functions/idea/showInterest/handler.main
+      events:
+        - httpApi:
+            path: /user/{userId}/idea/{ideaId}/interest
+            method: post
 
 resources:
   Resources:
