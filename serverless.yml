@@ -67,9 +67,10 @@ functions:
   ShowInterest:
       handler: src/functions/idea/showInterest/handler.main
       events:
-        - httpApi:
+        - http:
             path: /user/{userId}/idea/{ideaId}/interest
             method: post
+            cors: true
 
   AddComment:
       handler: src/functions/comment/create/handler.main
