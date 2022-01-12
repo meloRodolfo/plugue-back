@@ -13,13 +13,8 @@ module.exports.main = async (event) => {
 
   try {
     const ideas = await idea.findAll({
-        attributes: ['id', 'title', 'status', 'description', 'area_of_interest', 'author'],
-        include: [{
-          model: user,
-          include: {
-            model: info
-          }
-        }],
+        attributes: ['id', 'title', 'status', 'description', 'area_of_interest', 'AuthorId'],
+        include: [{ all: true, nested: true }],
         where: whereParams
     });
 
@@ -27,7 +22,7 @@ module.exports.main = async (event) => {
     const interestingIdeas = [];
 
     ideas.map((idea) => {
-        if (idea.dataValues.author === userId) myIdeas.push(idea)
+        if (idea.dataValues.AuthorId === userId) myIdeas.push(idea)
         else interestingIdeas.push(idea)
     })
 

@@ -9,6 +9,13 @@ provider:
   stage: dev
   region: us-east-1
   profile: plugue
+  iam: 
+    role:
+      statements:
+        - Effect: Allow
+          Action: cognito-idp:AdminConfirmSignUp
+          Resource: arn:aws:cognito-idp:us-east-1:816989727726:userpool/us-east-1_O1wzsbyBj
+
 
 # you can define service wide environment variables here
 #  environment:
@@ -64,6 +71,21 @@ functions:
           method: post
           cors: true
   
+  ShowInterest:
+      handler: src/functions/idea/showInterest/handler.main
+      events:
+        - http:
+            path: /user/{userId}/idea/{ideaId}/interest
+            method: post
+            cors: true
+
+  AddComment:
+      handler: src/functions/comment/create/handler.main
+      events:
+        - http:
+            path: /user/{userId}/idea/{ideaId}/comment
+            method: post
+
   ShowInterest:
       handler: src/functions/idea/showInterest/handler.main
       events:

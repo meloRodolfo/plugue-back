@@ -1,6 +1,9 @@
 const { user } = require('../../../../models');
 const { info } = require('../../../../models');
 const { v4: uuid } = require('uuid');
+const { CognitoIdentityServiceProvider } = require('aws-sdk');
+
+const cognitoIdentityServiceProvider = new CognitoIdentityServiceProvider();
 
 module.exports.main = async (event) => {
     const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body
@@ -14,6 +17,13 @@ module.exports.main = async (event) => {
             array.push({id: uuid(), type: key, value: value, userId: eventBody.id});
         });
         await info.bulkCreate(array);
+
+        const params = {
+          UserPoolId: "us-east-1_tlITSF73b",
+          Username: eventBody.id
+        };
+    
+        await cognitoIdentityServiceProvider.adminConfirmSignUp(params).promise();
 
         statusCode = 201;
         body.message = "Success to create new user";

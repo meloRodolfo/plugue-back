@@ -20,7 +20,7 @@ module.exports = {
       area_of_interest: {
         type: Sequelize.STRING
       },
-      author: {
+      AuthorId: {
         type: Sequelize.STRING,
         references: {
           model: 'users',
