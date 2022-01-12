@@ -1,6 +1,5 @@
 {
   "queryStringParameters": {
-    "userId": "1",
-    "title": "teste 1"
+    "userId": "1"
   }
 }

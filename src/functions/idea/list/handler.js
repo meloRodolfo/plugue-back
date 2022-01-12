@@ -1,4 +1,4 @@
-const { idea, user } = require('../../../../models');
+const { idea, info, user } = require('../../../../models');
 
 module.exports.main = async (event) => {
   const { userId, title, area_of_interest } = event.queryStringParameters;
@@ -14,7 +14,10 @@ module.exports.main = async (event) => {
     const ideas = await idea.findAll({
         attributes: ['id', 'title', 'status', 'description', 'area_of_interest', 'author'],
         include: [{
-          model: user
+          model: user,
+          include: {
+            model: info
+          }
         }],
         where: whereParams
     });
