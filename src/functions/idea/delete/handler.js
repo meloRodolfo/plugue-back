@@ -11,7 +11,10 @@ module.exports.main = async (event) => {
   let statusCode;
 
   try {
-    const ideaToDelete = await idea.findByPk(ideaId);
+    const ideaToDelete = await idea.findByPk(ideaId, {
+      attributes: ['id', 'title', 'status', 'description', 'area_of_interest', 'AuthorId'],
+      include: user,
+    });
 
     if(!ideaToDelete) throw new NotFoundError("Idea not found")
 
