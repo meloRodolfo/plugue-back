@@ -7,7 +7,9 @@ module.exports.main = async (event) => {
   let statusCode;
 
   try {
-    const updateIdea = await idea.findByPk(ideaId)
+    const updateIdea = await idea.findByPk(ideaId, {
+      attributes: ['id', 'title', 'status', 'description', 'area_of_interest', 'AuthorId'],
+    });
 
     console.log(`Updating idea ${updateIdea}`)
     
