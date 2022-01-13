@@ -1,4 +1,4 @@
-const { interest } = require('../../../../models');
+const { sequelize } = require('../../../../models');
 
 module.exports.main = async (event) => {
   const { userId } = event.pathParameters;
@@ -6,9 +6,11 @@ module.exports.main = async (event) => {
   let statusCode;
 
   try {
-    const getIdeas = await interest.findAll({
-        where: { userId }
-    });
+    const [getIdeas] = await sequelize.query(`
+      select * from interests
+      inner join ideas i on interests.IdeaId = i.id
+      where userId = '${userId}'
+    `) 
 
     statusCode = 200;
     body.message = "Success to get interesting ideas";

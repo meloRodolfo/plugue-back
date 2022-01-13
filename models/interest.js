@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 
   interest.associate = function associateModels(models) {
     interest.belongsTo(models.user, { foreignKey: 'id', as: 'user' });
-    interest.belongsTo(models.idea, { foreignKey: 'id', as: 'idea' });
+    interest.belongsTo(models.idea, { foreignKey: 'id', as: 'idea', onDelete: 'CASCADE', });
   }
 
   return interest;

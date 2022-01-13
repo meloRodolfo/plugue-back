@@ -1,4 +1,4 @@
-const { idea } = require('../../../../models');
+const { idea, user, interest } = require('../../../../models');
 
 function NotFoundError(message) {
   this.message = message;
@@ -11,6 +11,12 @@ module.exports.main = async (event) => {
   let statusCode;
 
   try {
+
+    await interest.destroy({
+      where: {
+        IdeaId: ideaId
+      }
+    })
     const ideaToDelete = await idea.findByPk(ideaId, {
       attributes: ['id', 'title', 'status', 'description', 'area_of_interest', 'AuthorId'],
       include: user,

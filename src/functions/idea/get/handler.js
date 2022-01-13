@@ -13,7 +13,9 @@ module.exports.main = async (event) => {
   try {
     const getIdea = await idea.findByPk(ideaId, {
       attributes: ['id', 'title', 'status', 'description', 'area_of_interest', 'AuthorId'],
-        include: user,
+      include: [
+        user
+      ],
     });
 
     if(!getIdea) throw new NotFoundError("Idea not found")

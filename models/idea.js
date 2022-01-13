@@ -22,7 +22,10 @@ module.exports = (sequelize, DataTypes) => {
 
   idea.associate = function associateModels(models) {
     idea.belongsTo(models.user, { as: 'Author' });
-    idea.belongsToMany(models.user, { through: 'interest' });
+    idea.belongsToMany(models.user, { 
+      through: 'interest',
+      onDelete: 'CASCADE',
+     });
   }
 
   return idea;
