@@ -14,7 +14,7 @@ provider:
       statements:
         - Effect: Allow
           Action: cognito-idp:AdminConfirmSignUp
-          Resource: arn:aws:cognito-idp:us-east-1:816989727726:userpool/us-east-1_O1wzsbyBj
+          Resource: arn:aws:cognito-idp:us-east-1:816989727726:userpool/us-east-1_tlITSF73b
 
 
 # you can define service wide environment variables here

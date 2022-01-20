@@ -14,7 +14,7 @@ module.exports.main = async (event) => {
         const newUser = await user.create({id: eventBody.id, email: eventBody.email, type: eventBody.type});
         const array = [];
         Object.entries(eventBody.info).forEach(([key, value]) => {
-            array.push({id: uuid(), type: key, value: value, userId: eventBody.id});
+            array.push({type: key, value: value, userId: eventBody.id});
         });
         await info.bulkCreate(array);
 
