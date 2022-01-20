@@ -12,11 +12,13 @@ module.exports.main = async (event) => {
     statusCode = 201;
     body.message = "Success to show interest to idea";
     body.idea = showInterest.id;
+    body.status = statusCode;
 
   } catch (error) {
     console.log(error);
     statusCode = 500;
     body.error = 'Error to show interest to idea'
+    body.status = statusCode;
   }
 
   return {
