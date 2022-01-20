@@ -15,11 +15,13 @@ module.exports.main = async (event) => {
     statusCode = 201;
     body.message = "Success to create new idea";
     body.idea = newIdea.id;
+    body.status = statusCode;
 
   } catch (error) {
     console.log(error);
     statusCode = 500;
     body.error = 'Error to create new idea'
+    body.status = statusCode;
   }
 
   return {
